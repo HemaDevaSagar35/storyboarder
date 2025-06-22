@@ -1,1 +1,1 @@
-from openai.adapter import OpenAIAdapter
+from providers.openai.adapter import OpenAIAdapter

@@ -1,6 +1,7 @@
+import os
 from fastapi import APIRouter
 from shared.data import ImageGenRequest, ImageGenResponse
-from services.image_generator import image_generator_service
+from api.app.services.image_generator import image_generator_service
 
 
 
@@ -11,5 +12,6 @@ async def generate_image(request: ImageGenRequest):
     provider = request.provider
     params = request.params
 
+    params["api_key"] = os.getenv(f"{provider.upper()}_API_KEY")
     image = await image_generator_service.generate_image(prompt=prompt, provider_slug=provider, **params)
     return ImageGenResponse(image=image)

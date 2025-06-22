@@ -1,6 +1,9 @@
 from fastapi import FastAPI
-from routes import image_generate
+from api.app.routes import image_generate
 import providers
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = FastAPI(
     title="Storyboarder API"
