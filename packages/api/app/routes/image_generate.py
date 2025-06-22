@@ -13,5 +13,6 @@ async def generate_image(request: ImageGenRequest):
     params = request.params
 
     params["api_key"] = os.getenv(f"{provider.upper()}_API_KEY")
-    image = await image_generator_service.generate_image(prompt=prompt, provider_slug=provider, **params)
-    return ImageGenResponse(image=image)
+    response = await image_generator_service.generate_image(prompt=prompt, provider_slug=provider, **params)
+
+    return ImageGenResponse(image=response.get("image", ""), error=response.get("error", None))
