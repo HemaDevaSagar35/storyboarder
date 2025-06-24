@@ -12,3 +12,4 @@ class ImageGenRequest(BaseModel):
 class ImageGenResponse(BaseModel):
     image: Optional[str] = ""
     error: Optional[str] = ""
+    image_url: Optional[str] = ""

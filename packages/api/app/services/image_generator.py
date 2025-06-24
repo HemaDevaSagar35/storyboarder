@@ -8,6 +8,9 @@ class ImageGeneratorService:
             provider = provider_class()
             output = await provider.generate_image(prompt, **params)
 
+            if output.startswith("http"):
+                return {"image_url": output}
+
             return {"image": output}
         except Exception as e:
             return {"error": str(e)}
